@@ -8,11 +8,14 @@
     "url": "https://clientglance.com"
   },
   "homepage": "https://clientglance.com",
+  "privacyPolicyUrl": "https://clientglance.com/privacy",
+  "icon": ".claude-plugin/icon.png",
   "keywords": [
     "client-portal",
     "agency",
     "project-status",
     "dashboard",
     "mcp"
-  ]
+  ],
+  "license": "MIT"
 }
