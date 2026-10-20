@@ -3,7 +3,7 @@
   "description": "Run the client portals in your Client Glance agency workspace: create a portal for a client, turn features on, invite teammates, and check what a client sees.",
   "version": "1.0.0",
   "author": {
-    "name": "UPSYS LLC",
+    "name": "UpSys LLC",
     "email": "hello@clientglance.com",
     "url": "https://clientglance.com"
   },

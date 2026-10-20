@@ -3,7 +3,7 @@
   "name": "client-glance",
   "description": "The Client Glance plugin for Claude Code: run your agency's client portals from the terminal.",
   "owner": {
-    "name": "UPSYS LLC",
+    "name": "UpSys LLC",
     "email": "hello@clientglance.com",
     "url": "https://clientglance.com"
   },
