@@ -1,24 +1,26 @@
 ---
 name: client-glance
-description: Runs an agency's Client Glance workspace over its MCP tools. Use when someone asks to create a client portal from a ClickUp list, turn portal features on or off, give a client access, invite a teammate, or check how a client's portal or project looks.
+description: Runs an agency's Client Glance workspace over its MCP tools. Use when someone asks to create a client portal, turn portal features on or off, give a client access, invite a teammate, or check how a client's portal or project looks.
 ---
 
 # Client Glance
 
-Client Glance turns an agency's ClickUp lists into password-protected portals for its clients. The `client-glance` MCP server exposes one tool per API route, named after the route with `/` and `-` turned into `_` (`portals/set-password` is `portals_set_password`).
+Client Glance gives an agency a password-protected portal for each client, fed by the project tools the agency already uses. Today the project source is ClickUp, and time can come from ClickUp or Everhour. More sources will follow, so check what the workspace has connected before you assume one. The `client-glance` MCP server exposes one tool per API route, named after the route with `/` and `-` turned into `_` (`portals/set-password` is `portals_set_password`).
 
-The connection acts for one organization, the one the person picked when they signed in. Every tool that takes `organizationId` fills it in from the connection, so leave it out. Call `users_me` first when you need the organization's name, plan or the person's role.
+The connection acts for one organization, the one the person picked when they signed in. Leave `organizationId` out: the tools fill it in from the connection. Call `users_me` first when you need the organization's name, plan or the person's role.
 
-## Words that trip agents up
+## Traps
 
 - **A client never gets an invite.** Clients open their portal with its address and password. `invites_send` adds a *teammate* to the agency's workspace. When someone says "invite the client", they mean the portal link and password.
-- **A portal sits on one ClickUp list or folder.** Its id is a Convex id like `k57...`, never the ClickUp list id.
+- **A portal sits on one project in the connected tool** (a ClickUp list or folder today). Its id is a Client Glance id like `k57...`, never the source tool's id.
 - **Find a portal by name with `portals_list`** (or `portals_listActive`), then use its `_id`. Don't guess ids or slugs.
 
-## Create a portal from a ClickUp list
+## Create a portal
+
+`organizations_get` says which tools are connected (`clickupConnected`, `everhourConnected` and so on). The steps below are for ClickUp, the one project source today.
 
 1. `integrations_clickup_verify`. If it says `connected: false`, stop: the person connects ClickUp in Settings (or gives you a `pk_` token for `integrations_clickup_set_token`).
-2. Walk down to the list: `integrations_clickup_workspaces`, then `integrations_clickup_spaces` (workspaceId), then `integrations_clickup_space_hierarchy` (spaceId). Lists inside a folder come from `integrations_clickup_folder_lists` (folderId).
+2. Walk down to the client's list: `integrations_clickup_workspaces`, then `integrations_clickup_spaces` (workspaceId), then `integrations_clickup_space_hierarchy` (spaceId). Lists inside a folder come from `integrations_clickup_folder_lists` (folderId).
 3. `portals_count` and `organizations_get` tell you whether the plan has room and give you the brand color and logo.
 4. `portals_create` with:
    - `name` and `slug` (lowercase, dashes; the client's name usually works)
@@ -44,7 +46,7 @@ Tell the person the address and the password, and that it's theirs to send to th
 
 Before turning on Everhour time, check `integrations_everhour_projects` returns projects. For a ClickUp source, `integrations_clickup_capabilities` (workspaceId) says whether the plan allows time tracking.
 
-Name, slug, branding, language and active state go through `portals_update`. If the portal belongs to a group (`portal_groups_list`, `portal_groups_listMembers`), a change to the group with `portal_groups_update` reaches every portal in it, so say that before you make it.
+Name, slug, branding, language and active state go through `portals_update`. If the portal belongs to a group (`portal_groups_list`, `portal_groups_listMembers`), a change to the group with `portal_groups_update` reaches every portal in it. Say that before you make it.
 
 ## Give a client access
 
@@ -66,4 +68,4 @@ Name, slug, branding, language and active state go through `portals_update`. If 
 
 ## Ask first
 
-Tools marked destructive overwrite or delete something: `portals_remove`, `portals_set_password`, `portal_groups_update`, `users_removeFromOrganization`, `organizations_clearClickUpToken` and the rest. Say what will change and get a yes before you call one. Posting tools (`portal_view_comments_post`, `portal_view_chat_post`, `portal_view_requests_submit`) write to ClickUp under the agency's account, prefixed with the portal name, so the client and the team both see it.
+Tools marked destructive overwrite or delete something: `portals_remove`, `portals_set_password`, `portal_groups_update`, `users_removeFromOrganization`, `organizations_clearClickUpToken` and the rest. Say what will change and get a yes before you call one. Posting tools (`portal_view_comments_post`, `portal_view_chat_post`, `portal_view_requests_submit`) write to the connected project tool under the agency's account, prefixed with the portal name, so the client and the team both see it.
