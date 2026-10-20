@@ -1,0 +1,17 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "client-glance",
+  "description": "The Client Glance plugin for Claude Code: run your agency's ClickUp client portals from the terminal.",
+  "owner": {
+    "name": "UPSYS LLC",
+    "email": "hello@clientglance.com",
+    "url": "https://clientglance.com"
+  },
+  "plugins": [
+    {
+      "name": "client-glance",
+      "source": "./",
+      "description": "The Client Glance MCP server plus a skill for the common agency workflows: create a portal from a ClickUp list, set its features, give the client access, and check its status."
+    }
+  ]
+}

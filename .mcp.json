@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "client-glance": {
+      "type": "http",
+      "url": "https://clientglance.com/mcp"
+    }
+  }
+}

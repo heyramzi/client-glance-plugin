@@ -1,0 +1,12 @@
+{
+  "name": "client-glance",
+  "description": "Build and run the ClickUp client portals in your Client Glance agency workspace: create a portal from a ClickUp list, turn features on, invite teammates, and check what a client sees.",
+  "version": "1.0.0",
+  "author": {
+    "name": "UPSYS LLC",
+    "email": "hello@clientglance.com",
+    "url": "https://clientglance.com"
+  },
+  "homepage": "https://clientglance.com",
+  "keywords": ["clickup", "client-portal", "agency", "dashboard", "mcp"]
+}
