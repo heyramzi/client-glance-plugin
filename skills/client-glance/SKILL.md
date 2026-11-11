@@ -1,18 +1,18 @@
 ---
 name: client-glance
-description: Runs an agency's Client Glance workspace over its MCP tools. Use when someone asks to create a client portal, turn portal features on or off, give a client access, invite a teammate, or check how a client's portal or project looks.
+description: Runs an agency's Glance workspace over its MCP tools. Use when someone asks to create a client portal, turn portal features on or off, give a client access, invite a teammate, or check how a client's portal or project looks.
 ---
 
-# Client Glance
+# Glance
 
-Client Glance gives an agency a password-protected portal for each client, fed by the project tools the agency already uses. Today the project source is ClickUp, and time can come from ClickUp or Everhour. More sources will follow, so check what the workspace has connected before you assume one. The `client-glance` MCP server exposes one tool per API route, named after the route with `/` and `-` turned into `_` (`portals/set-password` is `portals_set_password`).
+Glance gives an agency a password-protected portal for each client, fed by the project tools the agency already uses. Today the project source is ClickUp, and time can come from ClickUp or Everhour. More sources will follow, so check what the workspace has connected before you assume one. The `client-glance` MCP server exposes one tool per API route, named after the route with `/` and `-` turned into `_` (`portals/set-password` is `portals_set_password`).
 
 The connection acts for one organization, the one the person picked when they signed in. Leave `organizationId` out: the tools fill it in from the connection. Call `users_me` first when you need the organization's name, plan or the person's role.
 
 ## Traps
 
 - **A client never gets an invite.** Clients open their portal with its address and password. `invites_send` adds a *teammate* to the agency's workspace. When someone says "invite the client", they mean the portal link and password.
-- **A portal sits on one project in the connected tool** (a ClickUp list or folder today). Its id is a Client Glance id like `k57...`, never the source tool's id.
+- **A portal sits on one project in the connected tool** (a ClickUp list or folder today). Its id is a Glance id like `k57...`, never the source tool's id.
 - **Find a portal by name with `portals_list`** (or `portals_listActive`), then use its `_id`. Don't guess ids or slugs.
 
 ## Create a portal
@@ -62,7 +62,7 @@ Name, slug, branding, language and active state go through `portals_update`. If 
 
 - `portals_listDashboard` for a quick look across every portal.
 - `portal_view_dashboard` (portalId, optional `period` like `30d`) returns what the client sees: tasks by status, what's waiting on them, time and the enabled cards.
-- `portals_digest` returns the AI summary the client sees. `portals_regenerateDigest` writes a fresh one; it's throttled, so a second call right after returns the same summary.
+- `portals_digest` returns the AI summary the client sees. `portals_regenerateDigest` writes a fresh one, at most once in a short window, so a second call right after returns the same summary.
 - `portal_view_report` (period `7d` or `30d`) gives the time report.
 - `analytics_trend` (sinceMs) and `analytics_visitCounts` show whether clients actually open their portals.
 

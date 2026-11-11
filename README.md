@@ -1,8 +1,8 @@
-# Client Glance for Claude Code
+# Glance for Claude Code
 
-Run your agency's Client Glance workspace (clientglance.com) from Claude Code: create a portal for a client, turn features like time tracking or chat on, hand a client their link and password, invite a teammate, and check what a client sees before a call.
+Run your agency's Glance workspace (clientglance.com) from Claude Code: create a portal for a client, turn features like time tracking or chat on, hand a client their link and password, invite a teammate, and check what a client sees before a call.
 
-The plugin adds the Client Glance MCP server (`https://clientglance.com/mcp`) and one skill that knows the common agency workflows.
+The plugin adds the Glance MCP server (`https://clientglance.com/mcp`) and one skill that knows the common agency workflows.
 
 ## Install
 
@@ -11,9 +11,9 @@ The plugin adds the Client Glance MCP server (`https://clientglance.com/mcp`) an
 /plugin install client-glance@client-glance
 ```
 
-Then run `/mcp`, pick `client-glance` and choose Authenticate. Your browser opens clientglance.com: sign in with the email you use for Client Glance, pick the workspace and press Allow.
+Then run `/mcp`, pick `client-glance` and choose Authenticate. Your browser opens clientglance.com: sign in with the email you use for Glance, pick the workspace and press Allow.
 
-You need a Client Glance account with your project tool connected. Today that's ClickUp, with Everhour as an option for time. Start one at [clientglance.com](https://clientglance.com).
+You need a Glance account with your project tool connected. Today that's ClickUp, with Everhour as an option for time. Start one at [clientglance.com](https://clientglance.com).
 
 ## Try
 
@@ -25,7 +25,7 @@ You need a Client Glance account with your project tool connected. Today that's 
 
 ## Access
 
-Only the workspace you picked when you signed in. Tools that change or delete something are marked destructive, so Claude asks first. Disconnect any time under Settings, Connected apps.
+Only the workspace you picked when you signed in. Claude asks before it calls a tool that changes or deletes something. Disconnect any time under Settings, Connected apps.
 
 ## Help
 

@@ -1,6 +1,6 @@
 {
   "name": "client-glance",
-  "description": "Run the client portals in your Client Glance agency workspace: create a portal for a client, turn features on, invite teammates, and check what a client sees.",
+  "description": "Run the client portals in your Glance agency workspace: create a portal for a client, turn features on, invite teammates, and check what a client sees.",
   "version": "1.0.0",
   "author": {
     "name": "UpSys LLC",
@@ -10,12 +10,6 @@
   "homepage": "https://clientglance.com",
   "privacyPolicyUrl": "https://clientglance.com/privacy",
   "icon": ".claude-plugin/icon.png",
-  "keywords": [
-    "client-portal",
-    "agency",
-    "project-status",
-    "dashboard",
-    "mcp"
-  ],
+  "keywords": ["client-portal", "agency", "project-status", "dashboard", "mcp"],
   "license": "MIT"
 }
