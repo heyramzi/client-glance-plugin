@@ -1,5 +1,6 @@
 {
   "name": "client-glance",
+  "displayName": "Glance",
   "description": "Run the client portals in your Glance agency workspace: create a portal for a client, turn features on, invite teammates, and check what a client sees.",
   "version": "1.0.0",
   "author": {
